@@ -12,6 +12,7 @@ export default class MainMenu extends Phaser.Scene {
     logoTween: Phaser.Tweens.Tween | null;
 
     startTime: number;
+    
     outsideMessage: Phaser.GameObjects.Text;
 
     create ()

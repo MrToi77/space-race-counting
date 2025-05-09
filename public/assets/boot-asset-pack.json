@@ -2,7 +2,7 @@
     "boot": {
         "files": [
             {
-                "url": "assets/bg.png",
+                "url": "assets/background.png",
                 "type": "image",
                 "key": "background"
             }
