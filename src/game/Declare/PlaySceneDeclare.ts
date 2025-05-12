@@ -4,8 +4,8 @@ export default class PlaySceneDeclare{
     public currentIndex = 0;
     public validNodes: boolean[] = [];
     public points: Phaser.Math.Vector2[] = [];
-    public greenShip!: Phaser.GameObjects.PathFollower;
-    public redShip!: Phaser.GameObjects.PathFollower;
+    public greenShip!: Phaser.GameObjects.PathFollower ;
+    public redShip!: Phaser.GameObjects.PathFollower ;
     public amountOfNode: number = 71;
     public path!: Phaser.Curves.Path;
     public buttonStartContainer: Phaser.GameObjects.Container;

@@ -2,18 +2,21 @@ import ButtonChoiceService from "../services/ButtonChoiceService";
 import ButtonChoiceView from "../views/ButtonChoiceView";
 import PlaySceneDeclare from "../Declare/PlaySceneDeclare";
 import Instance from "../Declare/InstanceDeclare";
+import MoveView from "../views/MoveView";
 let checkOutOfRange : boolean = false;
 export default class ButtonChoiceController{
     private service: ButtonChoiceService;
     private view: ButtonChoiceView;
     private declare: PlaySceneDeclare;
     private scene: Phaser.Scene;
+    private moveView: MoveView;
     constructor(scene: Phaser.Scene, declare: PlaySceneDeclare) {
         this.scene = scene;
         this.declare = declare;
         this.service = new ButtonChoiceService(this.declare);
         this.view = new ButtonChoiceView(this.scene);
         this.setView();
+        this.moveView = new MoveView(this.scene, this.declare);
     }
 
     setView(){
@@ -48,17 +51,20 @@ export default class ButtonChoiceController{
     }
 
     private animateMove(fromIdx: number, toIdx: number, callback: () => void) {
+        this.declare.ButtonChoicesContainer.setVisible(false);
         const step = toIdx > fromIdx ? 1 : -1;
         let idx = fromIdx + step;
         const timer = this.scene.time.addEvent({
-          delay: 77,
+          delay: 100,
           loop: true,
           callback: () => {
 
             // Tính góc giữa điểm trước (idx - step) và điểm hiện tại (idx)
             const prev = this.declare.points[idx - step];
             const curr = this.declare.points[idx];
-            const angle = Phaser.Math.Angle.Between(prev.x, prev.y, curr.x, curr.y);
+            const angle = step > 0
+      ? Phaser.Math.Angle.Between(prev.x, prev.y, curr.x, curr.y)
+      : Phaser.Math.Angle.Between(curr.x, curr.y, prev.x, prev.y);
             // Áp góc cho greenShip
             this.declare.greenShip.setRotation(angle);
 
@@ -66,6 +72,7 @@ export default class ButtonChoiceController{
             if ((toIdx > fromIdx && idx >= toIdx) || (toIdx < fromIdx && idx <= toIdx)) {
               timer.remove(false);
               callback();
+              this.declare.ButtonChoicesContainer.setVisible(true);
             }
             idx += (toIdx > fromIdx ? 1 : -1);
           }
@@ -74,7 +81,7 @@ export default class ButtonChoiceController{
     
       private moveGreenTo(index: number) {
         const p = this.declare.points[index];
-        this.declare.greenShip.setPosition(p.x, p.y);
+        this.moveView.MoveView(100, p.x, p.y, 'greenShip');
       }
 
       private onArrived() {

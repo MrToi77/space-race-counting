@@ -6,11 +6,13 @@ import PlaySceneDeclare from '../Declare/PlaySceneDeclare';
 import PathController from '../controllers/PathController';
 import Instance from '../Declare/InstanceDeclare';
 import TextView from '../views/TextView';
+import MoveView from '../views/MoveView';
 export default class PlayScene extends Phaser.Scene {
   private declare: PlaySceneDeclare;
   private buttonController: ButtonChoiceController;
   private currentIndex: number = 0;
   private pathController: PathController;
+  private moveView: MoveView;
 
   constructor() {
     super('PlayScene');
@@ -51,7 +53,8 @@ export default class PlayScene extends Phaser.Scene {
           this.declare.buttonStartContainer.setVisible(true);
         }
       })
-    })
+    });
+
     const start = this.declare.points[0];
     // 3) Tạo red ship theo path chạy liên tục
     this.declare.redShip = this.add.follower(this.declare.path, start.x, start.y , 'red_ship');
