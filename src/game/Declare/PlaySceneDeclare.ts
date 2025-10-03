@@ -13,6 +13,6 @@ export default class PlaySceneDeclare{
     public MessagesContainer: Phaser.GameObjects.Container;
     public MainMessage: Phaser.GameObjects.Text;
     public InstructionMessage: Phaser.GameObjects.Text;
-    public MainMessages: string[] = ['Win The Race.','The Other Ship Won.','You won the race!'];
-    public InstructionMessages: string[] = ['Move to the yellow color squares.', 'Select "Start" to try again.', 'Watch out! The red will be faster this time.'];
+    public MainMessages: string[] = ['Chiến thắng cuộc đua.','Thuyền Đỏ Thắng.','Bạn thắng rồi!'];
+    public InstructionMessages: string[] = ['Di chuyển vào vùng màu vàng.', 'Bấm "Start" để chơi lại nhé.', 'Cẩn thận! Tàu đỏ sẽ nhanh hơn lúc này.'];
 }

@@ -39,9 +39,13 @@ export default class ButtonChoiceController{
                       this.declare.currentIndex = newIndex;
                       if (this.declare.currentIndex === 70) {
                         this.onArrived();     
+                      } else {
+                        this.declare.ButtonChoicesContainer.setVisible(true);
                       }
                     } else {
-                      this.animateMove(newIndex, this.declare.currentIndex, () => {});
+                      this.animateMove(newIndex, this.declare.currentIndex, () => {
+                        this.declare.ButtonChoicesContainer.setVisible(true);
+                      });
                     }
                   });
                 });
@@ -72,7 +76,7 @@ export default class ButtonChoiceController{
             if ((toIdx > fromIdx && idx >= toIdx) || (toIdx < fromIdx && idx <= toIdx)) {
               timer.remove(false);
               callback();
-              this.declare.ButtonChoicesContainer.setVisible(true);
+              // Removed unconditional setVisible(true) here to avoid overriding onArrived logic
             }
             idx += (toIdx > fromIdx ? 1 : -1);
           }
@@ -85,6 +89,7 @@ export default class ButtonChoiceController{
       }
 
       private onArrived() {
+        console.log("onArrived.");
         this.declare.MainMessage.setText(this.declare.MainMessages[2]);
         this.declare.InstructionMessage.setText(this.declare.InstructionMessages[2]);
       
