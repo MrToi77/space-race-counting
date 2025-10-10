@@ -90,6 +90,7 @@ export default class ButtonChoiceController{
 
       private onArrived() {
         console.log("onArrived.");
+        this.declare.redShip.stopFollow();
         this.declare.MainMessage.setText(this.declare.MainMessages[2]);
         this.declare.InstructionMessage.setText(this.declare.InstructionMessages[2]);
       

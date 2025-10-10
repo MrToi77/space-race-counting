@@ -36,7 +36,7 @@ export default class ButtonChoiceView {
       // Tạo text, depth cao hơn để hiển thị lên trên khung
       const txt = this.scene.add
         .text(0, 0, label, {
-          fontSize: '20px',       // có thể giảm kích cỡ nếu 30px quá lớn với vùng 30x30
+          fontSize: '40px',       // có thể giảm kích cỡ nếu 30px quá lớn với vùng 30x30
           fontStyle: 'bold',
           color: '#000',
           fontFamily: 'Arial',
